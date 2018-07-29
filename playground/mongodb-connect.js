@@ -1,4 +1,5 @@
-const MongoClient = require('mongodb').MongoClient;  // here we import the MongoClient from mongodb
+//const MongoClient = require('mongodb').MongoClient;  // here we import the MongoClient from mongodb
+const {MongoClient,ObjectID} = require('mongodb'); // by object destructing
 
 // here by connect function we connect to the mongodb database but it takes two argument 1st the url of database and second the callback function.
 MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
@@ -27,7 +28,8 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db)=>{
       if(err) {
         return console.log('Unable to insert to do ',err);
       }
-      console.log(JSON.stringify(result.ops,undefined,2));
+      //console.log(JSON.stringify(result.ops,undefined,2));
+        console.log(result.ops[0]._id.getTimeStamp());  // gets the getTimeStamp  -->but not working on windows.
   });
   db.close();  // by this we close the connection.
 });
